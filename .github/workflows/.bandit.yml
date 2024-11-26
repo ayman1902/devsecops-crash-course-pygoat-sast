@@ -1,0 +1,23 @@
+# .bandit.yml
+
+# Directories to exclude from Bandit analysis (like tests or generated files)
+exclude_dirs:
+  - tests
+  - migrations
+  - docs
+
+# Skipping specific issues to avoid false positives
+skips:
+  - B404  # Blacklist rule for subprocess (if it's used safely in your code)
+  - B506  # Unsafe YAML loading (if you use it intentionally, like for trusted input)
+
+# Setting the default severity to low for certain types of findings
+severity: low
+
+# Configuration for Bandit to run against specific files only
+# You can restrict analysis to specific files, instead of the entire repository.
+files:
+  - ./src/*
+
+# Optional: Log level (if you want to see more detailed information during execution)
+log_level: INFO
