@@ -5,6 +5,7 @@ on:
     branches:
       - main
   pull_request: # Trigger for pull requests targeting the main branch
+  workflow_dispatch: # Add a button trigger for manual runs
 
 jobs:
   security-analysis:
@@ -35,8 +36,11 @@ jobs:
       - name: Run Bandit
         run: bandit -r . # Recursively analyze the current directory
 
-      # Step 6: (Optional) Optimize Bandit configuration
-      # Use a Bandit config file to suppress false positives or exclude specific directories/files
-      - name: Run Bandit with config (Optional)
+      # Step 6: Run Bandit with config (Optional for false positive optimization)
+      - name: Run Bandit with Config
         run: bandit -r . -c .bandit.yml
-        # Ensure you have a .bandit.yml file in your repository
+        # Ensure a .bandit.yml exists in your repository
+
+      # Step 7: Output a summary (optional for reporting)
+      - name: Upload Bandit Results (Optional)
+        run: echo "Analysis complete. Review Bandit output in the logs."
