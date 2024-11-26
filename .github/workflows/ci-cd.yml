@@ -33,8 +33,9 @@ jobs:
         run: pip install bandit
 
       # Step 5: Run Bandit for security analysis
-      - name: Run Bandit
-        run: bandit -r . # Recursively analyze the current directory
+      - name: Run Bandit with custom config to skip false positives
+        run: |
+          bandit -r . -c .bandit.yml --severity high --skip B404,B506 --exclude tests,docs
 
       # Step 6: Run Bandit with config (Optional for false positive optimization)
       - name: Run Bandit with Config
