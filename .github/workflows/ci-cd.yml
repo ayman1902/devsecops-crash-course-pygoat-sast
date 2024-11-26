@@ -37,11 +37,6 @@ jobs:
         run: |
           bandit -r . -c .bandit.yml --severity high --skip B404,B506 --exclude tests,docs
 
-      # Step 6: Run Bandit with config (Optional for false positive optimization)
-      - name: Run Bandit with Config
-        run: bandit -r . -c .bandit.yml
-        # Ensure a .bandit.yml exists in your repository
-
       # Step 7: Output a summary (optional for reporting)
       - name: Upload Bandit Results (Optional)
         run: echo "Analysis complete. Review Bandit output in the logs."
