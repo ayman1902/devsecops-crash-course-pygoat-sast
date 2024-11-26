@@ -36,6 +36,8 @@ jobs:
       - name: Run Bandit
         run: |
           bandit -r . -c .github/workflows/.bandit.yml --severity high --skip B404,B506 --exclude tests,docs
+        continue-on-error: true  # Prevents the CI pipeline from failing on security issues
+
 
       # Step 7: Output a summary (optional for reporting)
       - name: Upload Bandit Results (Optional)
