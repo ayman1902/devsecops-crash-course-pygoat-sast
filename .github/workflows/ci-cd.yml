@@ -33,9 +33,9 @@ jobs:
         run: pip install bandit
 
       # Step 5: Run Bandit for security analysis
-      - name: Run Bandit with custom config to skip false positives
+      - name: Run Bandit
         run: |
-          bandit -r . -c .bandit.yml --severity high --skip B404,B506 --exclude tests,docs
+          bandit -r . -c .github/workflows/.bandit/.bandit.yml --severity high --skip B404,B506 --exclude tests,docs
 
       # Step 7: Output a summary (optional for reporting)
       - name: Upload Bandit Results (Optional)
